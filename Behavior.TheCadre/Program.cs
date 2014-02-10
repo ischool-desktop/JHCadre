@@ -18,6 +18,8 @@ namespace Behavior.TheCadre
         static public void Main()
         {
 
+            ServerModule.AutoManaged("https://module.ischool.com.tw/module/138/Cadre_Behavior/udm.xml");
+
             //班級幹部輸入
             //JHSchool.Class.Instance.AddDetailBulider(new FISCA.Presentation.DetailBulider<ClassCadreItem>());
 
