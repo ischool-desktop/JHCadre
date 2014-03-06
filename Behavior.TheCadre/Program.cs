@@ -23,7 +23,10 @@ namespace Behavior.TheCadre
             //班級幹部輸入
             //JHSchool.Class.Instance.AddDetailBulider(new FISCA.Presentation.DetailBulider<ClassCadreItem>());
 
-            JHSchool.Student.Instance.AddDetailBulider(new FISCA.Presentation.DetailBulider<StudentCadreItem>());
+            FISCA.Permission.FeatureAce UserPermission;
+            UserPermission = FISCA.Permission.UserAcl.Current["Behavior.TheCadre.Detail00040"];
+            if (UserPermission.Editable || UserPermission.Viewable)
+                JHSchool.Student.Instance.AddDetailBulider(new FISCA.Presentation.DetailBulider<StudentCadreItem>());
 
 
             //RibbonBarItem edit = StuAdmin.Instance.RibbonBarItems["幹部管理"];
@@ -68,7 +71,7 @@ namespace Behavior.TheCadre
             };
 
             RibbonBarItem rbItem2 = Student.Instance.RibbonBarItems["資料統計"];
-            rbItem2["報表"]["學務相關報表"]["學生幹部證明單"].Enable = User.Acl["Behavior.TheCadre.Report00060"].Executable; 
+            rbItem2["報表"]["學務相關報表"]["學生幹部證明單"].Enable = User.Acl["Behavior.TheCadre.Report00060"].Executable;
             rbItem2["報表"]["學務相關報表"]["學生幹部證明單"].Click += delegate
             {
                 if (Student.Instance.SelectedKeys.Count != 0)
