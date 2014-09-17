@@ -505,13 +505,6 @@ namespace Behavior.TheCadre
             ChangeKeyInMerit();
         }
 
-        //舊有幹部資料畫面
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            OldCadreSetup Tcn = new OldCadreSetup();
-            Tcn.ShowDialog();
-        }
-
         //檢查新增之Row是否未輸入資料
         private void dataGridViewX1_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {

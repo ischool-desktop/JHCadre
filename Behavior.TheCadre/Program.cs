@@ -86,25 +86,25 @@ namespace Behavior.TheCadre
             };
 
             RibbonBarItem rbItem3 = Class.Instance.RibbonBarItems["學務"];
-            rbItem3["班級幹部管理"].Image = Properties.Resources.niche_fav_64;
-            rbItem3["班級幹部管理"].Size = RibbonBarButton.MenuButtonSize.Medium;
-            rbItem3["班級幹部管理"].Enable = false;
-            rbItem3["班級幹部管理"].Click += delegate
-            {
-                if (Class.Instance.SelectedKeys.Count == 1)
-                {
-                    TheCadreByClassForm CBC = new TheCadreByClassForm(Class.Instance.SelectedKeys[0]);
-                    CBC.ShowDialog();
-                }
-                else if (Class.Instance.SelectedKeys.Count > 1)
-                {
-                    MsgBox.Show("本功能僅提供對單一班級進行幹部登錄作業!");
-                }
-                else
-                {
-                    MsgBox.Show("請選擇一個班級!!");
-                }
-            };
+            //rbItem3["班級幹部管理"].Image = Properties.Resources.niche_fav_64;
+            //rbItem3["班級幹部管理"].Size = RibbonBarButton.MenuButtonSize.Medium;
+            //rbItem3["班級幹部管理"].Enable = false;
+            //rbItem3["班級幹部管理"].Click += delegate
+            //{
+            //    if (Class.Instance.SelectedKeys.Count == 1)
+            //    {
+            //        TheCadreByClassForm CBC = new TheCadreByClassForm(Class.Instance.SelectedKeys[0]);
+            //        CBC.ShowDialog();
+            //    }
+            //    else if (Class.Instance.SelectedKeys.Count > 1)
+            //    {
+            //        MsgBox.Show("本功能僅提供對單一班級進行幹部登錄作業!");
+            //    }
+            //    else
+            //    {
+            //        MsgBox.Show("請選擇一個班級!!");
+            //    }
+            //};
 
             rbItem3["班級幹部登錄"].Enable = false;
             rbItem3["班級幹部登錄"].Image = Properties.Resources.stamp_paper_fav_128;
@@ -129,7 +129,7 @@ namespace Behavior.TheCadre
             K12.Presentation.NLDPanels.Class.SelectedSourceChanged += delegate
             {
                 rbItem3["班級幹部登錄"].Enable = (User.Acl["Behavior.TheCadre.Report00070.1"].Executable && (K12.Presentation.NLDPanels.Class.SelectedSource.Count == 1));
-                rbItem3["班級幹部管理"].Enable = (User.Acl["Behavior.TheCadre.Report00070"].Executable && (K12.Presentation.NLDPanels.Class.SelectedSource.Count == 1));
+                //rbItem3["班級幹部管理"].Enable = (User.Acl["Behavior.TheCadre.Report00070"].Executable && (K12.Presentation.NLDPanels.Class.SelectedSource.Count == 1));
 
                 rbItem7["報表"]["學務相關報表"]["班級幹部總表"].Enable = (User.Acl["K12.class.TheCadre.Report00060.5"].Executable && (K12.Presentation.NLDPanels.Class.SelectedSource.Count >= 1));
             };
@@ -196,7 +196,7 @@ namespace Behavior.TheCadre
             detail2.Add(new Framework.Security.RibbonFeature("JHSchool.Student.Ribbon0168", "匯入擔任幹部記錄"));
 
             detail2 = Framework.Security.RoleAclSource.Instance["班級"]["功能按鈕"];
-            detail2.Add(new Framework.Security.RibbonFeature("Behavior.TheCadre.Report00070", "班級幹部管理"));
+            //detail2.Add(new Framework.Security.RibbonFeature("Behavior.TheCadre.Report00070", "班級幹部管理"));
             detail2.Add(new Framework.Security.RibbonFeature("Behavior.TheCadre.Report00070.1", "班級幹部登錄"));
             detail2.Add(new Framework.Security.RibbonFeature("K12.class.TheCadre.Report00060.5", "班級幹部總表"));
 
