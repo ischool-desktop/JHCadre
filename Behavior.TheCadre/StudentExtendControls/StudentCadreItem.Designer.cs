@@ -38,6 +38,7 @@
             this.ColSchoolYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSemster = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColCadreName = new Behavior.TheCadre.DataGridViewComboBoxExColumn();
+            this.colRatioOrder = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ColCadreRefName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.SuspendLayout();
@@ -45,6 +46,11 @@
             // checkBoxX1
             // 
             this.checkBoxX1.AutoSize = true;
+            // 
+            // 
+            // 
+            this.checkBoxX1.BackgroundStyle.Class = "";
+            this.checkBoxX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.checkBoxX1.Location = new System.Drawing.Point(317, 171);
             this.checkBoxX1.Name = "checkBoxX1";
             this.checkBoxX1.Size = new System.Drawing.Size(191, 21);
@@ -73,6 +79,7 @@
             this.ColSchoolYear,
             this.ColSemster,
             this.ColCadreName,
+            this.colRatioOrder,
             this.ColCadreRefName});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
@@ -90,6 +97,7 @@
             this.dataGridViewX1.TabIndex = 0;
             this.dataGridViewX1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridViewX1_CellBeginEdit);
             this.dataGridViewX1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX1_CellEndEdit);
+            this.dataGridViewX1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX1_CellValueChanged);
             this.dataGridViewX1.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewX1_UserAddedRow);
             // 
             // ColCadreID
@@ -130,6 +138,16 @@
             this.ColCadreName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.ColCadreName.Width = 110;
             // 
+            // colRatioOrder
+            // 
+            this.colRatioOrder.Checked = true;
+            this.colRatioOrder.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.colRatioOrder.CheckValue = null;
+            this.colRatioOrder.HeaderText = "幹部比序";
+            this.colRatioOrder.Name = "colRatioOrder";
+            this.colRatioOrder.Visible = false;
+            this.colRatioOrder.Width = 85;
+            // 
             // ColCadreRefName
             // 
             this.ColCadreRefName.HeaderText = "說明";
@@ -161,6 +179,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSchoolYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSemster;
         private DataGridViewComboBoxExColumn ColCadreName;
+        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colRatioOrder;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCadreRefName;
     }
 }

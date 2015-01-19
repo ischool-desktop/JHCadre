@@ -85,6 +85,16 @@ namespace Behavior.TheCadre
                 }
             };
 
+
+
+            string URL學生幹部證明單 = "ischool/幹部模組/學生/報表/學務/學生幹部證明單";
+            FISCA.Features.Register(URL學生幹部證明單, arg =>
+            {
+                 CadreProveReport StudentRW = new CadreProveReport();
+                 StudentRW.ShowDialog();
+            });
+
+
             RibbonBarItem rbItem3 = Class.Instance.RibbonBarItems["學務"];
             //rbItem3["班級幹部管理"].Image = Properties.Resources.niche_fav_64;
             //rbItem3["班級幹部管理"].Size = RibbonBarButton.MenuButtonSize.Medium;

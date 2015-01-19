@@ -31,14 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colCadreType = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.colCadreIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCadreName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMeritA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMeritB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMeritC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMeritReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.btnExit = new DevComponents.DotNetBar.ButtonX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
@@ -53,6 +45,17 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCadreType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colCadreIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCadreName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMeritA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMeritB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMeritC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMeritReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRatioOrder = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +76,8 @@
             this.colMeritA,
             this.colMeritB,
             this.colMeritC,
-            this.colMeritReason});
+            this.colMeritReason,
+            this.colRatioOrder});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -86,10 +90,152 @@
             this.dataGridViewX1.Location = new System.Drawing.Point(12, 39);
             this.dataGridViewX1.Name = "dataGridViewX1";
             this.dataGridViewX1.RowTemplate.Height = 24;
-            this.dataGridViewX1.Size = new System.Drawing.Size(620, 285);
+            this.dataGridViewX1.Size = new System.Drawing.Size(988, 383);
             this.dataGridViewX1.TabIndex = 0;
             this.dataGridViewX1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX1_CellEndEdit);
             this.dataGridViewX1.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewX1_UserAddedRow);
+            // 
+            // btnSave
+            // 
+            this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.BackColor = System.Drawing.Color.Transparent;
+            this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSave.Location = new System.Drawing.Point(838, 437);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 1;
+            this.btnSave.Text = "儲存";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.BackColor = System.Drawing.Color.Transparent;
+            this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnExit.Location = new System.Drawing.Point(925, 437);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 2;
+            this.btnExit.Text = "離開";
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // labelX1
+            // 
+            this.labelX1.AutoSize = true;
+            this.labelX1.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.Class = "";
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(12, 12);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(291, 21);
+            this.labelX1.TabIndex = 3;
+            this.labelX1.Text = "說明：幹部比序欄位,為免試入學超額比序使用。";
+            // 
+            // btnPrintOut
+            // 
+            this.btnPrintOut.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnPrintOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPrintOut.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrintOut.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnPrintOut.Location = new System.Drawing.Point(12, 437);
+            this.btnPrintOut.Name = "btnPrintOut";
+            this.btnPrintOut.Size = new System.Drawing.Size(75, 23);
+            this.btnPrintOut.TabIndex = 4;
+            this.btnPrintOut.Text = "匯出";
+            this.btnPrintOut.Click += new System.EventHandler(this.btnPrintOut_Click);
+            // 
+            // btnPrintIn
+            // 
+            this.btnPrintIn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnPrintIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPrintIn.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrintIn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnPrintIn.Location = new System.Drawing.Point(93, 437);
+            this.btnPrintIn.Name = "btnPrintIn";
+            this.btnPrintIn.Size = new System.Drawing.Size(75, 23);
+            this.btnPrintIn.TabIndex = 5;
+            this.btnPrintIn.Text = "匯入";
+            this.btnPrintIn.Click += new System.EventHandler(this.btnPrintIn_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.FileName = "匯出幹部名稱管理";
+            this.saveFileDialog1.Filter = "Excel (*.xls)|*.xls";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 8000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // KeyInMerit
+            // 
+            this.KeyInMerit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.KeyInMerit.AutoSize = true;
+            this.KeyInMerit.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.KeyInMerit.BackgroundStyle.Class = "";
+            this.KeyInMerit.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.KeyInMerit.Location = new System.Drawing.Point(893, 12);
+            this.KeyInMerit.Name = "KeyInMerit";
+            this.KeyInMerit.Size = new System.Drawing.Size(107, 21);
+            this.KeyInMerit.TabIndex = 6;
+            this.KeyInMerit.Text = "輸入敘獎資料";
+            this.KeyInMerit.CheckedChanged += new System.EventHandler(this.KeyInMerit_CheckedChanged);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "幹部名稱";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 65;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "大功";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "小功";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "嘉獎";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "獎勵事由";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "獎勵事由";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Width = 300;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "獎勵事由";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Width = 300;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "參與比序";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             // 
             // colCadreType
             // 
@@ -140,143 +286,23 @@
             this.colMeritReason.Name = "colMeritReason";
             this.colMeritReason.Width = 300;
             // 
-            // btnSave
+            // colRatioOrder
             // 
-            this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.BackColor = System.Drawing.Color.Transparent;
-            this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(470, 339);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "儲存";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.BackColor = System.Drawing.Color.Transparent;
-            this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(557, 339);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 2;
-            this.btnExit.Text = "離開";
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // labelX1
-            // 
-            this.labelX1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelX1.AutoSize = true;
-            this.labelX1.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(12, 12);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(422, 21);
-            this.labelX1.TabIndex = 3;
-            this.labelX1.Text = "說明：舊有幹部清單已提供匯出，可於匯出整理後匯入新畫面清單中。";
-            // 
-            // btnPrintOut
-            // 
-            this.btnPrintOut.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnPrintOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPrintOut.BackColor = System.Drawing.Color.Transparent;
-            this.btnPrintOut.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnPrintOut.Location = new System.Drawing.Point(12, 339);
-            this.btnPrintOut.Name = "btnPrintOut";
-            this.btnPrintOut.Size = new System.Drawing.Size(75, 23);
-            this.btnPrintOut.TabIndex = 4;
-            this.btnPrintOut.Text = "匯出";
-            this.btnPrintOut.Click += new System.EventHandler(this.btnPrintOut_Click);
-            // 
-            // btnPrintIn
-            // 
-            this.btnPrintIn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnPrintIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPrintIn.BackColor = System.Drawing.Color.Transparent;
-            this.btnPrintIn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnPrintIn.Location = new System.Drawing.Point(93, 339);
-            this.btnPrintIn.Name = "btnPrintIn";
-            this.btnPrintIn.Size = new System.Drawing.Size(75, 23);
-            this.btnPrintIn.TabIndex = 5;
-            this.btnPrintIn.Text = "匯入";
-            this.btnPrintIn.Click += new System.EventHandler(this.btnPrintIn_Click);
-            // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.FileName = "匯出幹部名稱管理";
-            this.saveFileDialog1.Filter = "Excel (*.xls)|*.xls";
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 8000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // KeyInMerit
-            // 
-            this.KeyInMerit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.KeyInMerit.AutoSize = true;
-            this.KeyInMerit.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.KeyInMerit.BackgroundStyle.Class = "";
-            this.KeyInMerit.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.KeyInMerit.Location = new System.Drawing.Point(525, 12);
-            this.KeyInMerit.Name = "KeyInMerit";
-            this.KeyInMerit.Size = new System.Drawing.Size(107, 21);
-            this.KeyInMerit.TabIndex = 6;
-            this.KeyInMerit.Text = "輸入敘獎資料";
-            this.KeyInMerit.CheckedChanged += new System.EventHandler(this.KeyInMerit_CheckedChanged);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "幹部名稱";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 65;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "大功";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "小功";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "嘉獎";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "獎勵事由";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "獎勵事由";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 300;
+            this.colRatioOrder.Checked = true;
+            this.colRatioOrder.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.colRatioOrder.CheckValue = null;
+            this.colRatioOrder.HeaderText = "參與比序";
+            this.colRatioOrder.Name = "colRatioOrder";
+            this.colRatioOrder.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colRatioOrder.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colRatioOrder.Visible = false;
+            this.colRatioOrder.Width = 85;
             // 
             // NewCadreSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(642, 372);
+            this.ClientSize = new System.Drawing.Size(1010, 470);
             this.Controls.Add(this.KeyInMerit);
             this.Controls.Add(this.btnPrintIn);
             this.Controls.Add(this.btnPrintOut);
@@ -310,6 +336,8 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Timer timer1;
         private DevComponents.DotNetBar.Controls.CheckBoxX KeyInMerit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewComboBoxColumn colCadreType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCadreIndex;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCadreName;
@@ -318,5 +346,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colMeritB;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMeritC;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMeritReason;
+        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colRatioOrder;
     }
 }

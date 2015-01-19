@@ -46,6 +46,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCadreName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSeatNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +60,9 @@
             this.dataGridViewX1.AllowUserToAddRows = false;
             this.dataGridViewX1.AllowUserToDeleteRows = false;
             this.dataGridViewX1.AllowUserToResizeRows = false;
+            this.dataGridViewX1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewX1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -77,17 +81,18 @@
             this.dataGridViewX1.Location = new System.Drawing.Point(10, 41);
             this.dataGridViewX1.Name = "dataGridViewX1";
             this.dataGridViewX1.RowTemplate.Height = 24;
-            this.dataGridViewX1.Size = new System.Drawing.Size(350, 339);
+            this.dataGridViewX1.Size = new System.Drawing.Size(320, 398);
             this.dataGridViewX1.TabIndex = 0;
             this.dataGridViewX1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX1_CellEndEdit);
             // 
             // btnSave
             // 
             this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.AutoSize = true;
             this.btnSave.BackColor = System.Drawing.Color.Transparent;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(204, 410);
+            this.btnSave.Location = new System.Drawing.Point(174, 469);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 25);
             this.btnSave.TabIndex = 1;
@@ -97,10 +102,11 @@
             // btnExit
             // 
             this.btnExit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.AutoSize = true;
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(285, 410);
+            this.btnExit.Location = new System.Drawing.Point(255, 469);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 25);
             this.btnExit.TabIndex = 2;
@@ -124,6 +130,7 @@
             // 
             // checkBoxX1
             // 
+            this.checkBoxX1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxX1.AutoSize = true;
             this.checkBoxX1.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -131,7 +138,7 @@
             // 
             this.checkBoxX1.BackgroundStyle.Class = "";
             this.checkBoxX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.checkBoxX1.Location = new System.Drawing.Point(10, 386);
+            this.checkBoxX1.Location = new System.Drawing.Point(10, 445);
             this.checkBoxX1.Name = "checkBoxX1";
             this.checkBoxX1.Size = new System.Drawing.Size(174, 21);
             this.checkBoxX1.TabIndex = 7;
@@ -140,9 +147,10 @@
             // 
             // linkLabel1
             // 
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel1.Location = new System.Drawing.Point(10, 418);
+            this.linkLabel1.Location = new System.Drawing.Point(10, 477);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(86, 17);
             this.linkLabel1.TabIndex = 8;
@@ -204,11 +212,12 @@
             // btnReset
             // 
             this.btnReset.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReset.AutoSize = true;
             this.btnReset.BackColor = System.Drawing.Color.Transparent;
             this.btnReset.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnReset.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnReset.Location = new System.Drawing.Point(259, 10);
+            this.btnReset.Location = new System.Drawing.Point(254, 10);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 25);
             this.btnReset.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -242,6 +251,12 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.Width = 80;
             // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "參與比序";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 85;
+            // 
             // colCadreName
             // 
             this.colCadreName.DataPropertyName = "_CadreName";
@@ -272,7 +287,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(372, 447);
+            this.ClientSize = new System.Drawing.Size(342, 504);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.lbSemester);
             this.Controls.Add(this.intSemester);
@@ -283,6 +298,7 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataGridViewX1);
+            this.DoubleBuffered = true;
             this.Name = "ClassSpeedInsertBySeanNo";
             this.Text = "班級幹部登錄";
             this.Load += new System.EventHandler(this.CadreByStudentSean_Load);
@@ -305,12 +321,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCadreName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colStudentName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSeatNo;
         private DevComponents.Editors.IntegerInput intSchoolYear;
         private DevComponents.Editors.IntegerInput intSemester;
         private DevComponents.DotNetBar.LabelX lbSemester;
         private DevComponents.DotNetBar.ButtonX btnReset;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCadreName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStudentName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSeatNo;
     }
 }

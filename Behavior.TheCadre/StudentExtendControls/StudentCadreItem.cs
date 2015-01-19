@@ -56,7 +56,7 @@ namespace Behavior.TheCadre
 
             BgW.DoWork += new DoWorkEventHandler(BgW_DoWork);
             BgW.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BgW_RunWorkerCompleted);
-            
+
             DataListener = new ChangeListener();
             DataListener.Add(new DataGridViewSource(dataGridViewX1));
             DataListener.StatusChanged += new EventHandler<ChangeEventArgs>(DataListener_StatusChanged);
@@ -173,9 +173,16 @@ namespace Behavior.TheCadre
                 obj.SchoolYear = "" + row.Cells[2].Value;
                 obj.Semester = "" + row.Cells[3].Value;
                 obj.CadreName = "" + row.Cells[4].Value; //幹部名稱
-                obj.Text = "" + row.Cells[5].Value;
+
+                if (row.Cells[5].Value != null)
+                    obj.Ratio_Order = bool.Parse("" + row.Cells[5].Value); //幹部比序
+
+                obj.Text = "" + row.Cells[6].Value;
 
                 sb.AppendLine("學年度「" + obj.SchoolYear + "」學期「" + obj.Semester + "」擔任「" + obj.ReferenceType + "」幹部名稱「" + obj.CadreName + "」幹部說明「" + obj.Text + "」");
+
+                //參與比序需於 - 2015/6月開啟本功能
+                //sb.AppendLine("學年度「" + obj.SchoolYear + "」學期「" + obj.Semester + "」擔任「" + obj.ReferenceType + "」幹部名稱「" + obj.CadreName + "」幹部比序「" + obj.Ratio_Order.ToString() + "」幹部說明「" + obj.Text + "」");
 
                 UDTSchoolList.Add(obj);
             }
@@ -251,7 +258,8 @@ namespace Behavior.TheCadre
                 row.Cells[2].Value = each.SchoolYear;
                 row.Cells[3].Value = each.Semester;
                 row.Cells[4].Value = each.CadreName;
-                row.Cells[5].Value = each.Text;
+                row.Cells[5].Value = each.Ratio_Order; //幹部比序
+                row.Cells[6].Value = each.Text;
 
                 //if (each.ReferenceID != "")
                 //{
@@ -270,7 +278,7 @@ namespace Behavior.TheCadre
         //        cell.ReadOnly = true;
         //    }
         //}
-        
+
         /// <summary>
         /// 基礎排序(學年度/學期)
         /// </summary>
@@ -388,6 +396,18 @@ namespace Behavior.TheCadre
             K12.Data.Configuration.ConfigData DateConfig = K12.Data.School.Configuration["幹部模組_幹部名稱清單"];
             DateConfig["幹部自動帶入"] = checkBoxX1.Checked.ToString();
             DateConfig.Save();
+        }
+
+        private void dataGridViewX1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != -1 || e.RowIndex != -1)
+            {
+                if (e.ColumnIndex == colRatioOrder.Index)
+                {
+                    this.SaveButtonVisible = true;
+                    this.CancelButtonVisible = true;
+                }
+            }
         }
     }
 }

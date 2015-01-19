@@ -35,7 +35,19 @@ namespace Behavior.TheCadre
                 sheetRowIndex++;
                 sheetColIndex = 0;
                 foreach (int colIndex in _colIndexes)
-                    _worksheet.Cells[sheetRowIndex, sheetColIndex++].PutValue("" + row.Cells[colIndex].Value);
+                {
+                     if (dgv.Columns[row.Cells[colIndex].ColumnIndex].HeaderText == "參與比序")
+                     {
+                          if ("" + row.Cells[colIndex].Value == "True")
+                          {
+                               _worksheet.Cells[sheetRowIndex, sheetColIndex++].PutValue("是");
+                          }
+                     }
+                     else
+                     {
+                          _worksheet.Cells[sheetRowIndex, sheetColIndex++].PutValue("" + row.Cells[colIndex].Value);
+                     }
+                }
             }
 
             _worksheet.AutoFitColumns();

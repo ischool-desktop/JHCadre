@@ -8,9 +8,9 @@ using DevComponents.DotNetBar.Controls;
 
 namespace Behavior.TheCadre
 {
-    class CadreDataRow:System.ComponentModel.INotifyPropertyChanged
+    class CadreDataRow : System.ComponentModel.INotifyPropertyChanged
     {
-  
+
         private string _care_name;
 
         private int _DefSchoolYear { get; set; }
@@ -86,6 +86,16 @@ namespace Behavior.TheCadre
                         _CadreRecord.Semester = _DefSemester.ToString(); //學期
                         _CadreRecord.StudentID = _StudentRecord.ID; //學生ID
                         _CadreRecord.Text = _Context._classRecord.Name; //班級名稱
+
+                        if (_Context.CadreRatioList.Contains(_CadreRecord.CadreName))
+                        {
+                            _CadreRecord.Ratio_Order = true;
+                        }
+                        else
+                        {
+                            _CadreRecord.Ratio_Order = false;
+                        }
+
                     }
                 }
                 else if (string.IsNullOrEmpty(_student_seat_no))//如果沒有這名學生
@@ -138,7 +148,7 @@ namespace Behavior.TheCadre
         /// <summary>
         /// 未傳入任何參數
         /// </summary>
-        public CadreDataRow(string CadreName, int index, ClassSpeedInsertBySeanNo Context,int DefSchoolYear,int DefSemester)
+        public CadreDataRow(string CadreName, int index, ClassSpeedInsertBySeanNo Context, int DefSchoolYear, int DefSemester)
         {
             _DefSchoolYear = DefSchoolYear;
             _DefSemester = DefSemester;
@@ -148,7 +158,7 @@ namespace Behavior.TheCadre
             _index = index;
 
             _StudentName = "";
-            _student_seat_no = ""; 
+            _student_seat_no = "";
         }
 
         /// <summary>
@@ -170,7 +180,7 @@ namespace Behavior.TheCadre
             _CadreName = _CadreRecord.CadreName;
 
             _index = index;
-        }       
+        }
 
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
     }

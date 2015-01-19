@@ -50,6 +50,16 @@ namespace Behavior.TheCadre
         private List<string> CadreTypeList = new List<string>();
 
         /// <summary>
+        /// 設定檔案
+        /// </summary>
+        string CadreConfigList = "幹部模組_幹部名稱清單";
+
+        /// <summary>
+        /// 設定檔案
+        /// </summary>
+        string CadreConfigSubLine = "幹部名稱管理畫面_輸入敘獎資料";
+
+        /// <summary>
         /// 傳入幹部型態(班級幹部/學校幹部/社團幹部/空字串為所有類型)
         /// </summary>
         /// <param name="NameType"></param>
@@ -69,11 +79,11 @@ namespace Behavior.TheCadre
 
             timerString();
 
-            K12.Data.Configuration.ConfigData DateConfig = K12.Data.School.Configuration["幹部模組_幹部名稱清單"];
+            K12.Data.Configuration.ConfigData DateConfig = K12.Data.School.Configuration[CadreConfigList];
             //DateConfig["幹部名稱_輸入敘獎資料"] = KeyInMerit.Checked.ToString();
-            if (DateConfig["幹部名稱管理畫面_輸入敘獎資料"] != "")
+            if (DateConfig[CadreConfigSubLine] != "")
             {
-                KeyInMerit.Checked = bool.Parse(DateConfig["幹部名稱管理畫面_輸入敘獎資料"]);
+                KeyInMerit.Checked = bool.Parse(DateConfig[CadreConfigSubLine]);
             }
 
             CodeDic = cfm.GetDisciplineReason();
@@ -108,6 +118,7 @@ namespace Behavior.TheCadre
                     row.Cells[colMeritB.Index].Value = each.MeritB;
                     row.Cells[colMeritC.Index].Value = each.MeritC;
                     row.Cells[colMeritReason.Index].Value = each.Reason;
+                    row.Cells[colRatioOrder.Index].Value = each.Ratio_Order;
                     dataGridViewX1.Rows.Add(row);
                 }
             }
@@ -145,6 +156,9 @@ namespace Behavior.TheCadre
                     obj.MeritC = check.CheckDataGridViewNotInt(eachRow.Cells[colMeritC.Index]);
                     obj.Reason = "" + eachRow.Cells[colMeritReason.Index].Value;
                 }
+
+                if (eachRow.Cells[colRatioOrder.Index].Value != null)
+                    obj.Ratio_Order = bool.Parse("" + eachRow.Cells[colRatioOrder.Index].Value); //是否參與比序
 
                 InsertList.Add(obj);
             }
@@ -280,7 +294,7 @@ namespace Behavior.TheCadre
 
             if (KeyInMerit.Checked) //如果提供輸入預設獎勵清單
             {
-                requiredHeaders = new List<string>(new string[] { "幹部類型", "排序", "幹部名稱", "擔任人數", "大功", "小功", "嘉獎", "獎勵事由" });
+                requiredHeaders = new List<string>(new string[] { "幹部類型", "排序", "幹部名稱", "擔任人數", "大功", "小功", "嘉獎", "獎勵事由", "參與比序" });
 
                 #region 匯入包含敘獎內容
 
@@ -289,7 +303,7 @@ namespace Behavior.TheCadre
                 Worksheet ws = wb.Worksheets[0];
 
                 //蒐集excel清單上的標題欄位
-                for (int i = 0; i <= 7; i++)
+                for (int i = 0; i <= 8; i++)
                 {
                     string header = ws.Cells[0, i].StringValue;
                     if (requiredHeaders.Contains(header))
@@ -350,13 +364,31 @@ namespace Behavior.TheCadre
 
                     obj.Number = check.CheckNotIntNumber_1(ws.Cells[x, headers["擔任人數"]]);
 
+                    //參與比序
+                    if (!string.IsNullOrEmpty("" + ws.Cells[x, headers["參與比序"]].Value))
+                    {
+                        if ("" + ws.Cells[x, headers["參與比序"]].Value == "是")
+                        {
+                            obj.Ratio_Order = true;
+                        }
+                        else
+                        {
+                            Campus.Windows.MsgBox.Show("參與比序必須為[是]或[空值]");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        obj.Ratio_Order = false;
+                    }
+
                     InsertList.Add(obj);
                 }
                 #endregion
             }
             else
             {
-                requiredHeaders = new List<string>(new string[] { "幹部類型", "排序", "幹部名稱", "擔任人數" });
+                requiredHeaders = new List<string>(new string[] { "幹部類型", "排序", "幹部名稱", "擔任人數", "參與比序" });
 
                 #region 不匯入敘獎內容
 
@@ -410,6 +442,17 @@ namespace Behavior.TheCadre
 
                     obj.Number = check.CheckNotIntNumber_1(ws.Cells[x, headers["擔任人數"]]);
 
+                    //參與比序
+                    if ("" + ws.Cells[x, headers["參與比序"]].Value != "是" || !string.IsNullOrEmpty("" + ws.Cells[x, headers["參與比序"]].Value))
+                    {
+                        Campus.Windows.MsgBox.Show("參與比序必須為[是]或[空值]");
+                        return;
+                    }
+                    else
+                    {
+                        obj.Ratio_Order = true;
+                    }
+
                     InsertList.Add(obj);
                 }
                 #endregion
@@ -424,7 +467,7 @@ namespace Behavior.TheCadre
             }
             catch (Exception ex)
             {
-                Campus.Windows.MsgBox.Show("新增資料錯誤!!" + ex.Message);
+                Campus.Windows.MsgBox.Show("新增資料錯誤!!\n" + ex.Message);
             }
 
             Campus.Windows.MsgBox.Show("匯入成功!!");
@@ -449,7 +492,7 @@ namespace Behavior.TheCadre
 
         private void timerString()
         {
-            timerList2.Enqueue("說明：(舊有)幹部清單已提供匯出，可於匯出整理後匯入新畫面清單中。");
+            timerList2.Enqueue("說明：幹部比序欄位,為免試入學超額比序使用。");
             timerList2.Enqueue("說明：幹部類型分為(班級幹部,社團幹部,學校幹部)。");
             timerList2.Enqueue("說明：(獎勵事由)欄位可直接輸入(獎勵事由)代碼。");
             timerList2.Enqueue("說明：排序是依(幹部名稱)分類後才依(排序)數字進行排序。");
@@ -498,8 +541,8 @@ namespace Behavior.TheCadre
         //當設定被勾選
         private void KeyInMerit_CheckedChanged(object sender, EventArgs e)
         {
-            K12.Data.Configuration.ConfigData DateConfig = K12.Data.School.Configuration["幹部模組_幹部名稱清單"];
-            DateConfig["幹部名稱管理畫面_輸入敘獎資料"] = KeyInMerit.Checked.ToString();
+            K12.Data.Configuration.ConfigData DateConfig = K12.Data.School.Configuration[CadreConfigList];
+            DateConfig[CadreConfigSubLine] = KeyInMerit.Checked.ToString();
             DateConfig.Save();
 
             ChangeKeyInMerit();
@@ -532,7 +575,7 @@ namespace Behavior.TheCadre
         {
             if (DataGridViewDataInChange)
             {
-                DialogResult dr = FISCA.Presentation.Controls.MsgBox.Show("資料已被修改,請確認是否要離開?", MessageBoxButtons.YesNo, MessageBoxDefaultButton.Button2);
+                DialogResult dr = FISCA.Presentation.Controls.MsgBox.Show("資料已修改,是否要離開?", MessageBoxButtons.YesNo, MessageBoxDefaultButton.Button2);
                 if (dr == DialogResult.Yes)
                 {
                     this.Close();

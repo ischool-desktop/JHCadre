@@ -33,6 +33,8 @@ namespace Behavior.TheCadre
         private int DefSchoolYear { get; set; }
         private int DefSemester { get; set; }
 
+        internal List<string> CadreRatioList { get; set; }
+
         public SchoolSpeedInsertByClassSeanNo()
         {
             InitializeComponent();
@@ -215,6 +217,21 @@ namespace Behavior.TheCadre
 
             //取得學校幹部類型
             List<ClassCadreNameObj> SchoolCadreNameList = _accessHelper.Select<ClassCadreNameObj>(string.Format("NameType = '{0}'", "學校幹部"));
+
+
+            //取得幹部比序清單
+            CadreRatioList = new List<string>();
+            foreach (ClassCadreNameObj each in SchoolCadreNameList)
+            {
+                if (each.Ratio_Order)
+                {
+                    if (!CadreRatioList.Contains(each.CadreName))
+                    {
+                        CadreRatioList.Add(each.CadreName);
+                    }
+                }
+            }
+
 
             SchoolCadreNameList = SortCadreNameList(SchoolCadreNameList);
 

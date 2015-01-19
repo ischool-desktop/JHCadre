@@ -44,6 +44,8 @@ namespace Behavior.TheCadre
 
         internal BackgroundWorker BGW;
 
+        internal List<string> CadreRatioList { get; set; }
+
         /// <summary>
         /// 班級Record
         /// </summary>
@@ -183,9 +185,22 @@ namespace Behavior.TheCadre
         private void ChangeForm()
         {
             _RowList = new List<CadreDataRow>();
-
             //取得班級幹部類型
             List<ClassCadreNameObj> ClassCadreNameList = _accessHelper.Select<ClassCadreNameObj>(string.Format("NameType = '{0}'", "班級幹部"));
+
+            //取得幹部比序清單
+            CadreRatioList = new List<string>();
+            foreach (ClassCadreNameObj each in ClassCadreNameList)
+            {
+                if (each.Ratio_Order)
+                {
+                    if (!CadreRatioList.Contains(each.CadreName))
+                    {
+                        CadreRatioList.Add(each.CadreName);
+                    }
+                }
+            }
+
 
             ClassCadreNameList = SortCadreNameList(ClassCadreNameList);
 

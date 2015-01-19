@@ -155,7 +155,15 @@ namespace Behavior.TheCadre
                                 _CadreRecord.SchoolYear = _DefSchoolYear.ToString(); //預設學年度
                                 _CadreRecord.Semester = _DefSemester.ToString(); //預設學期
                                 _CadreRecord.StudentID = s.StudedntID; //學生ID
-                                //_CadreRecord.Text = _Context._classRecord.Name; //學校幹部不輸入內容
+
+                                if (_Context.CadreRatioList.Contains(_CadreRecord.CadreName))
+                                {
+                                    _CadreRecord.Ratio_Order = true;
+                                }
+                                else
+                                {
+                                    _CadreRecord.Ratio_Order = false;
+                                }
                             }
                         }
                     }

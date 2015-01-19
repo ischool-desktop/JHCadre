@@ -8,7 +8,7 @@ namespace Behavior.TheCadre.ImportExport
     class ImportSchoolObject : SmartSchool.API.PlugIn.Import.Importer
     {
         AccessHelper helper = new AccessHelper();
-        List<string> Types = new List<string>() {"社團幹部","學校幹部","班級幹部"};
+        List<string> Types = new List<string>() { "社團幹部", "學校幹部", "班級幹部" };
         List<string> Keys = new List<string>();
 
         public ImportSchoolObject()
@@ -22,6 +22,10 @@ namespace Behavior.TheCadre.ImportExport
             wizard.PackageLimit = 3000;
             //可匯入的欄位
             wizard.ImportableFields.AddRange("學年度", "學期", "幹部類別", "幹部名稱", "說明");
+
+            //參與比序需於 - 2015/6月開啟本功能
+            //wizard.ImportableFields.AddRange("學年度", "學期", "幹部類別", "幹部名稱", "說明", "參與比序");
+            
             //必需要有的欄位
             wizard.RequiredFields.AddRange("學年度", "學期", "幹部類別", "幹部名稱");
             //驗證開始事件
@@ -67,6 +71,17 @@ namespace Behavior.TheCadre.ImportExport
                         if (!Types.Contains(value))
                             e.ErrorFields.Add(field, "幹部類別必須為社團幹部、學校幹部或班級幹部");
                         break;
+
+                    //參與比序需於 - 2015/6月開啟本功能
+                    //case "參與比序":
+                    //    if (!string.IsNullOrEmpty(value))
+                    //    {
+                    //        if (value != "是")
+                    //        {
+                    //            e.ErrorFields.Add(field, "欄位內容必須填入是或空白");
+                    //        }
+                    //    }
+                    //    break;
                 }
             }
             #endregion
@@ -92,12 +107,17 @@ namespace Behavior.TheCadre.ImportExport
 
             foreach (RowData Row in e.Items)
             {
+                //這裡的匯入做法
+                //是透過每一行一次select,來確認是否取得資料
+                //有資料就更新內容,也只能更新說明欄位
+                //沒資料就新增資料
                 string strCondition = "StudentID='" + Row.ID + "' and SchoolYear='" + Row["學年度"] + "' and Semester='" + Row["學期"] + "' and ReferenceType='" + Row["幹部類別"] + "' and CadreName='" + Row["幹部名稱"] + "'";
 
                 List<SchoolObject> records = helper.Select<SchoolObject>(strCondition);
 
                 if (records.Count > 0)
                 {
+                    //更新狀態,只能更新說明欄位
                     if (Row.ContainsKey("說明"))
                     {
                         records[0].Text = Row["說明"];
@@ -106,6 +126,7 @@ namespace Behavior.TheCadre.ImportExport
                 }
                 else
                 {
+                    //新增資料
                     SchoolObject record = new SchoolObject();
 
                     record.StudentID = Row.ID;
@@ -113,6 +134,33 @@ namespace Behavior.TheCadre.ImportExport
                     record.Semester = Row["學期"];
                     record.ReferenceType = Row["幹部類別"];
                     record.CadreName = Row["幹部名稱"];
+
+                    //參與比序需於 - 2015/6月開啟本功能
+                    //if (Row.ContainsKey("參與比序"))
+                    //{
+                    //    if (!string.IsNullOrEmpty(Row["參與比序"]))
+                    //    {
+                    //        if (Row["參與比序"] == "是")
+                    //        {
+                    //            record.Ratio_Order = true;
+                    //        }
+                    //        else
+                    //        {
+                    //            //空白 或 其它 填入"false"
+                    //            record.Ratio_Order = false;
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        //是空白
+                    //        record.Ratio_Order = false;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    //沒有此欄位
+                    //    record.Ratio_Order = false;
+                    //}
 
                     if (Row.ContainsKey("說明"))
                         record.Text = Row["說明"];
