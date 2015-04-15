@@ -182,12 +182,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CadreConfig.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CadreConfig.Designer.cs">
-      <DependentUpon>CadreConfig.cs</DependentUpon>
-    </Compile>
     <Compile Include="ClassExtendControls\new\CadreDataRow.cs" />
     <Compile Include="ClassExtendControls\new\ClassSpeedInsertBySeanNo.cs">
       <SubType>Form</SubType>
@@ -284,10 +278,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CadreConfig.resx">
-      <DependentUpon>CadreConfig.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="ClassExtendControls\new\ClassSpeedInsertBySeanNo.resx">
       <DependentUpon>ClassSpeedInsertBySeanNo.cs</DependentUpon>
     </EmbeddedResource>

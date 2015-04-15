@@ -294,7 +294,7 @@ namespace Behavior.TheCadre
 
             if (KeyInMerit.Checked) //如果提供輸入預設獎勵清單
             {
-                requiredHeaders = new List<string>(new string[] { "幹部類型", "排序", "幹部名稱", "擔任人數", "大功", "小功", "嘉獎", "獎勵事由", "參與比序" });
+                requiredHeaders = new List<string>(new string[] { "幹部類型", "排序", "幹部名稱", "擔任人數", "大功", "小功", "嘉獎", "獎勵事由" }); //參與比序
 
                 #region 匯入包含敘獎內容
 
@@ -363,24 +363,25 @@ namespace Behavior.TheCadre
                     }
 
                     obj.Number = check.CheckNotIntNumber_1(ws.Cells[x, headers["擔任人數"]]);
+                    obj.Ratio_Order = false;
 
                     //參與比序
-                    if (!string.IsNullOrEmpty("" + ws.Cells[x, headers["參與比序"]].Value))
-                    {
-                        if ("" + ws.Cells[x, headers["參與比序"]].Value == "是")
-                        {
-                            obj.Ratio_Order = true;
-                        }
-                        else
-                        {
-                            Campus.Windows.MsgBox.Show("參與比序必須為[是]或[空值]");
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        obj.Ratio_Order = false;
-                    }
+                    //if (!string.IsNullOrEmpty("" + ws.Cells[x, headers["參與比序"]].Value))
+                    //{
+                    //    if ("" + ws.Cells[x, headers["參與比序"]].Value == "是")
+                    //    {
+                    //        obj.Ratio_Order = true;
+                    //    }
+                    //    else
+                    //    {
+                    //        Campus.Windows.MsgBox.Show("參與比序必須為[是]或[空值]");
+                    //        return;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    obj.Ratio_Order = false;
+                    //}
 
                     InsertList.Add(obj);
                 }
@@ -388,7 +389,7 @@ namespace Behavior.TheCadre
             }
             else
             {
-                requiredHeaders = new List<string>(new string[] { "幹部類型", "排序", "幹部名稱", "擔任人數", "參與比序" });
+                requiredHeaders = new List<string>(new string[] { "幹部類型", "排序", "幹部名稱", "擔任人數" });
 
                 #region 不匯入敘獎內容
 
@@ -441,17 +442,17 @@ namespace Behavior.TheCadre
                     }
 
                     obj.Number = check.CheckNotIntNumber_1(ws.Cells[x, headers["擔任人數"]]);
-
+                    obj.Ratio_Order = false;
                     //參與比序
-                    if ("" + ws.Cells[x, headers["參與比序"]].Value != "是" || !string.IsNullOrEmpty("" + ws.Cells[x, headers["參與比序"]].Value))
-                    {
-                        Campus.Windows.MsgBox.Show("參與比序必須為[是]或[空值]");
-                        return;
-                    }
-                    else
-                    {
-                        obj.Ratio_Order = true;
-                    }
+                    //if ("" + ws.Cells[x, headers["參與比序"]].Value != "是" || !string.IsNullOrEmpty("" + ws.Cells[x, headers["參與比序"]].Value))
+                    //{
+                    //    Campus.Windows.MsgBox.Show("參與比序必須為[是]或[空值]");
+                    //    return;
+                    //}
+                    //else
+                    //{
+                    //    obj.Ratio_Order = true;
+                    //}
 
                     InsertList.Add(obj);
                 }
