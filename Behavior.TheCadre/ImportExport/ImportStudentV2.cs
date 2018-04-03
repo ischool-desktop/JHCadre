@@ -1011,7 +1011,7 @@ namespace JHSchool.Behavior.ImportExport
             string path = Path.Combine(Application.StartupPath, "Reports");
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
-            path = Path.Combine(path, reportName + ".xls");
+            path = Path.Combine(path, reportName + ".xlsx");
 
             Workbook doc = inputDoc;
 
@@ -1038,8 +1038,8 @@ namespace JHSchool.Behavior.ImportExport
             {
                 SaveFileDialog sd = new SaveFileDialog();
                 sd.Title = "另存新檔";
-                sd.FileName = reportName + ".xls";
-                sd.Filter = "Excel檔案 (*.xls)|*.xls|所有檔案 (*.*)|*.*";
+                sd.FileName = reportName + ".xlsx";
+                sd.Filter = "Excel檔案 (*.xlsx)|*.xlsx|所有檔案 (*.*)|*.*";
                 if (sd.ShowDialog() == DialogResult.OK)
                 {
                     try
