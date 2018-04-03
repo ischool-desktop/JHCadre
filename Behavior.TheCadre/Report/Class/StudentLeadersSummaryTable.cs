@@ -85,9 +85,9 @@ namespace Behavior.TheCadre
             sql.AccessUDTData(_config);
 
             //取得範本
-            Workbook template = new Workbook();
-            template.Worksheets.Clear();
-            template.Open(new MemoryStream(Properties.Resources.班級幹部總表_範本), FileFormatType.Excel2003);
+            Workbook template = new Workbook(new MemoryStream(Properties.Resources.班級幹部總表_範本));
+            //template.Worksheets.Clear();
+            //template.Open(new MemoryStream(Properties.Resources.班級幹部總表_範本), FileFormatType.Excel2003);
 
             Worksheet ptws = template.Worksheets[0];
             //建立Range
@@ -200,7 +200,8 @@ namespace Behavior.TheCadre
 
                 try
                 {
-                    wb.Save(path, FileFormatType.Excel2003);
+                    wb.Save(path, SaveFormat.Xlsx);
+                    //wb.Save(path, FileFormatType.Excel2003);
                     FISCA.Presentation.MotherForm.SetStatusBarMessage(reportName + "產生完成");
                     System.Diagnostics.Process.Start(path);
                 }
@@ -214,7 +215,8 @@ namespace Behavior.TheCadre
                     {
                         try
                         {
-                            wb.Save(sd.FileName, FileFormatType.Excel2003);
+                            wb.Save(sd.FileName, SaveFormat.Xlsx);
+                            //wb.Save(sd.FileName, FileFormatType.Excel2003);
                         }
                         catch
                         {

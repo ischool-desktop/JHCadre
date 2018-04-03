@@ -185,6 +185,14 @@ namespace Behavior.TheCadre
                 cs1.ShowDialog();
             };
 
+            // 2018/03/20 羿均 優化項目
+            RibbonSpeedInsert["幹部批次修改"].Enable = User.Acl["E00CFDDF-0F68-46CA-8608-C901A3E10616"].Executable;
+            RibbonSpeedInsert["幹部批次修改"].Image = Properties.Resources.niche_fav_64;
+            RibbonSpeedInsert["幹部批次修改"].Click += delegate
+            {
+                (new CardEdit.CadreEditForm()).ShowDialog();
+            };
+
             #region 權限控管
             //Framework.Security.Catalog ribbon = Framework.Security.RoleAclSource.Instance["學務作業"];
             //ribbon.Add(new Framework.Security.RibbonFeature("Behavior.TheCadre.Ribbon00010", "幹部名稱設定"));
@@ -214,6 +222,8 @@ namespace Behavior.TheCadre
             detail2.Add(new Framework.Security.RibbonFeature("Behavior.TheCadre.Report00070.5", "幹部名稱管理"));
             detail2.Add(new Framework.Security.RibbonFeature("Behavior.TheCadre.Report00080", "學校幹部登錄"));
             detail2.Add(new Framework.Security.RibbonFeature("K12.class.TheCadre.Report00060.8", "學校幹部總表"));
+            detail2.Add(new Framework.Security.ReportFeature("E00CFDDF-0F68-46CA-8608-C901A3E10616", "幹部批次修改"));
+
             #endregion
 
         }

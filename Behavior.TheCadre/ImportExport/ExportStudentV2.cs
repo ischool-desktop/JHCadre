@@ -640,7 +640,8 @@ namespace JHSchool.Behavior.ImportExport
                         }
                     }
                 }
-                report.Save(path, FileFormatType.Excel2003);
+                report.Save(path, SaveFormat.Xlsx);
+                //report.Save(path, FileFormatType.Excel2003);
                 #endregion
                 SmartSchool.Customization.PlugIn.Global.SetStatusBarMessage(_Title + "完成。");
 
