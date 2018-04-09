@@ -13,14 +13,18 @@ using Aspose.Cells;
 using System.IO;
 using System.Diagnostics;
 using FISCA.Presentation;
-using System.ComponentModel;
-
+using FISCA.LogAgent;
+using FISCA.Authentication;
 
 namespace Behavior.TheCadre.CardEdit
 {
     public partial class CadreEditForm : BaseForm
     {
         private Dictionary<string, string> classDic = new Dictionary<string, string>();
+
+        private string clientInfo = ClientInfo.GetCurrentClientInfo().OutputResult().OuterXml.Replace("'", "''");
+
+        private string actor = DSAServices.UserAccount.Replace("'", "''");
 
         public CadreEditForm()
         {
@@ -339,14 +343,63 @@ namespace Behavior.TheCadre.CardEdit
                     DialogResult result = MessageBox.Show("儲存資料中有" + IDList.Count + "筆幹部紀錄將被刪除", "警告", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
-                        string IDs = string.Join(",", IDList);
-                        string sql2 = string.Format(@"DELETE FROM $behavior.thecadre WHERE uid IN ( {0} )", IDs);
-
                         UpdateHelper up2 = new UpdateHelper();
-                        up2.Execute(sql2);
+                        string IDs = string.Join(",", IDList);
+                        //string sql2 = string.Format(@"DELETE FROM $behavior.thecadre WHERE uid IN ( {0} )", IDs);
+
+                        #region LOG
+
+                        string sql4 = string.Format(@"
+                            WITH data_row AS(
+                                SELECT
+                                    student.name AS student_name
+                                    , cadre.studentid
+                                    , cadre.referencetype
+                                    , cadre.cadrename
+                                    , cadre.schoolyear
+                                    , cadre.semester
+                                FROM
+                                    $behavior.thecadre AS cadre
+                                    LEFT OUTER JOIN student
+                                        ON student.id = cadre.studentid::BIGINT
+                                WHERE
+                                    cadre.uid IN ( {0} )
+                            ) , delete_cadre_data AS(
+                                DELETE FROM $behavior.thecadre WHERE uid IN ( {0} )
+                                RETURNING *
+                            )
+                            INSERT INTO log(
+		                        actor
+		                        , action_type
+		                        , action
+		                        , target_category
+		                        , target_id
+		                        , server_time
+		                        , client_info
+		                        , action_by
+		                        , description
+	                        )
+                            SELECT
+                                '{1}' AS actor
+		                        , 'Record' AS action_type
+		                        , '刪除幹部紀錄' AS action
+		                        , 'student' AS target_category
+		                        , data_row.studentid AS target_id
+		                        , now() AS server_time
+		                        , '{2}' AS client_info
+		                        , '批次修改幹部紀錄' AS action_by
+		                        , '刪除幹部紀錄: 學生「'|| data_row.student_name || '」 學年度「' || data_row.schoolyear || '」 學期「' || data_row.semester || '」 幹部類別「' || data_row.referencetype || '」幹部名稱「' || data_row.cadrename || '」' AS description
+                            FROM
+                                data_row
+                        ", IDs, actor, clientInfo, clientInfo);
+
+                        up2.Execute(sql4);
+
+                        #endregion
+
                     }
                 }
-                bgw.ReportProgress(30);
+                bgw.ReportProgress(40);
                 #endregion
 
                 #region 更新幹部紀錄
@@ -357,47 +410,91 @@ namespace Behavior.TheCadre.CardEdit
                     {
                         continue;
                     }
-                    string id = "" + row.Tag;
-                    string schoolYear = "" + row.Cells[4].Value;
-                    string semester = "" + row.Cells[5].Value;
-                    string cadre_name = "" + row.Cells[7].Value;
-                    string text = ("" + row.Cells[8].Value) == "" ? "NULL" : ("'" + row.Cells[8].Value + "'");
+                    if ("" + row.HeaderCell.Value == "修改")
+                    {
+                        string id = "" + row.Tag;
+                        string schoolYear = "" + row.Cells[4].Value;
+                        string semester = "" + row.Cells[5].Value;
+                        string cadre_name = "" + row.Cells[7].Value;
+                        string text = ("" + row.Cells[8].Value) == "" ? "NULL" : ("'" + row.Cells[8].Value + "'");
 
-                    string data = string.Format(@"
-                    SELECT
-                        {0} AS id
-                        , '{1}'::TEXT AS school_year
-                        , '{2}'::TEXT AS semester
-                        , '{3}'::TEXT AS cadre_name
-                        , {4}::TEXT AS text
-                ", id, schoolYear, semester, cadre_name, text);
-                    dataList.Add(data);
+                        string data = string.Format(@"
+                            SELECT
+                                {0} AS id
+                                , '{1}'::TEXT AS school_year
+                                , '{2}'::TEXT AS semester
+                                , '{3}'::TEXT AS cadre_name
+                                , {4}::TEXT AS text
+                             ", id, schoolYear, semester, cadre_name, text);
+
+                        dataList.Add(data);
+                    }
                 }
+
                 bgw.ReportProgress(60);
-                string dataRow = string.Join(" UNION ALL ", dataList);
-                string sql = string.Format(@"
-                WITH data_row AS(
-                    {0}
-                ) 
-                UPDATE $behavior.thecadre SET
-                    schoolyear = data_row.school_year
-                    , semester = data_row.semester
-                    , cadrename = data_row.cadre_name
-                    , text = data_row.text
-                FROM
-                    data_row
-                WHERE
-                    data_row.id = $behavior.thecadre.uid
-                ", dataRow);
 
-                bgw.ReportProgress(80);
+                if (dataList.Count > 0)
+                {
+                    string dataRow = string.Join(" UNION ALL ", dataList);
+                    string updateSql = string.Format(@"
+                        WITH data_row AS(
+                            {0}
+                        ) , update_data AS(
+                            UPDATE $behavior.thecadre SET
+                                schoolyear = data_row.school_year
+                                , semester = data_row.semester
+                                , cadrename = data_row.cadre_name
+                                , text = data_row.text
+                            FROM
+                                data_row
+                            WHERE
+                                data_row.id = $behavior.thecadre.uid
+                            RETURNING *
+                        ) , old_data AS(
+                            SELECT 
+                                *
+                            FROM
+                                $behavior.thecadre AS cadre
+                            WHERE
+                                cadre.uid IN ( SELECT id FROM data_row )
+                        )
+                        INSERT INTO log(
+		                    actor
+		                    , action_type
+		                    , action
+		                    , target_category
+		                    , target_id
+		                    , server_time
+		                    , client_info
+		                    , action_by
+		                    , description
+	                    )
+	                    SELECT
+		                    '{1}' AS actor
+		                    , 'Record' AS action_type
+		                    , '修改幹部紀錄' AS action
+		                    , 'student' AS target_category
+		                    , old_data.studentid AS target_id
+		                    , now() AS server_time
+		                    , '{2}' AS client_info
+		                    , '批次修改幹部紀錄' AS action_by
+		                    , '修改幹部紀錄: 學生「'|| student.name || '」學年度「' || old_data.schoolyear || '」 學期「' || old_data.semester || '」 幹部名稱「' || old_data.cadrename || '」修改為「' || data_row.cadre_name || '」幹部說明「' || old_data.text || '」修改為「' || data_row.text || '」' AS description
+	                    FROM
+		                    data_row
+		                    LEFT OUTER JOIN old_data	
+			                    ON old_data.uid = data_row.id           
+                            LEFT OUTER JOIN student
+                                ON student.id = old_data.studentid::BIGINT
+                ", dataRow, actor, clientInfo);
 
-                UpdateHelper up = new UpdateHelper();
-                up.Execute(sql);
+                    bgw.ReportProgress(80);
+
+                    UpdateHelper up = new UpdateHelper();
+                    up.Execute(updateSql);
+                }
 
                 bgw.ReportProgress(100);
                 #endregion
-
             };
             bgw.RunWorkerCompleted += delegate(object ob,RunWorkerCompletedEventArgs ev)
             {
@@ -431,11 +528,13 @@ namespace Behavior.TheCadre.CardEdit
                 {
                     row.Cells[4].Value = schoolYear;
                     row.Cells[4].Style.BackColor = Color.PowderBlue;
+                    row.HeaderCell.Value = "修改";
                 }
                 if ("" + row.Cells[5].Value != semester)
                 {
                     row.Cells[5].Value = semester;
                     row.Cells[5].Style.BackColor = Color.PowderBlue;
+                    row.HeaderCell.Value = "修改";
                 }
             }
         }
@@ -467,6 +566,7 @@ namespace Behavior.TheCadre.CardEdit
             {
                 row.Cells[7].Value = cardName;
                 row.Cells[7].Style.BackColor = Color.PowderBlue;
+                row.HeaderCell.Value = "修改";
             }
         }
 
@@ -481,6 +581,7 @@ namespace Behavior.TheCadre.CardEdit
             {
                 row.Cells[8].Value = detail;
                 row.Cells[8].Style.BackColor = Color.PowderBlue;
+                row.HeaderCell.Value = "修改";
             }
         }
 
