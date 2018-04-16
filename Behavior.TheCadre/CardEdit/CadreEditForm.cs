@@ -649,8 +649,7 @@ namespace Behavior.TheCadre.CardEdit
                 clearTempBtn.Visible = true;
             }
         }
+
         #endregion
-
-
     }
 }

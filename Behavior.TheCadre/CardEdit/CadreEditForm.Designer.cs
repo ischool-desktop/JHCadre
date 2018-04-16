@@ -748,6 +748,7 @@
             // 
             // detailLb
             // 
+            this.detailLb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.detailLb.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
@@ -763,6 +764,7 @@
             // clearTempBtn
             // 
             this.clearTempBtn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.clearTempBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.clearTempBtn.BackColor = System.Drawing.Color.Transparent;
             this.clearTempBtn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.clearTempBtn.Location = new System.Drawing.Point(191, 501);
@@ -777,6 +779,7 @@
             // saveBtn
             // 
             this.saveBtn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.saveBtn.BackColor = System.Drawing.Color.Transparent;
             this.saveBtn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.saveBtn.Location = new System.Drawing.Point(594, 501);
