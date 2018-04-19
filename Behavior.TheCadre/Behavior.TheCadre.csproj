@@ -41,7 +41,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\..\Documents and Settings\Dylan.Huang\桌面\系統\FiscaAE國中開發\addmodules\開發模組\</OutputPath>
+    <OutputPath>obj\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -80,6 +80,7 @@
     <Reference Include="DevComponents.DotNetBar2, Version=9.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\DevComponents.DotNetBar2.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="FISCA, Version=2.1.4.8, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -187,29 +188,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CardEdit\CadreEditForm.cs">
+    <Compile Include="CadreEdit\CadreEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CardEdit\CadreEditForm.Designer.cs">
+    <Compile Include="CadreEdit\CadreEditForm.Designer.cs">
       <DependentUpon>CadreEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CardEdit\CadreNameEditForm.cs">
+    <Compile Include="CadreEdit\CadreNameEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CardEdit\CadreNameEditForm.Designer.cs">
+    <Compile Include="CadreEdit\CadreNameEditForm.Designer.cs">
       <DependentUpon>CadreNameEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CardEdit\DetailEditForm.cs">
+    <Compile Include="CadreEdit\DetailEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CardEdit\DetailEditForm.Designer.cs">
+    <Compile Include="CadreEdit\DetailEditForm.Designer.cs">
       <DependentUpon>DetailEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CardEdit\SchoolYearSemeaterEditForm.cs">
+    <Compile Include="CadreEdit\SchoolYearSemeaterEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CardEdit\SchoolYearSemeaterEditForm.Designer.cs">
+    <Compile Include="CadreEdit\SchoolYearSemeaterEditForm.Designer.cs">
       <DependentUpon>SchoolYearSemeaterEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CadreMeritManage\CadreMeritManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CadreMeritManage\CadreMeritManage.Designer.cs">
+      <DependentUpon>CadreMeritManage.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassExtendControls\new\CadreDataRow.cs" />
     <Compile Include="ClassExtendControls\new\ClassSpeedInsertBySeanNo.cs">
@@ -305,17 +312,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CardEdit\CadreEditForm.resx">
+    <EmbeddedResource Include="CadreEdit\CadreEditForm.resx">
       <DependentUpon>CadreEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CardEdit\CadreNameEditForm.resx">
+    <EmbeddedResource Include="CadreEdit\CadreNameEditForm.resx">
       <DependentUpon>CadreNameEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CardEdit\DetailEditForm.resx">
+    <EmbeddedResource Include="CadreEdit\DetailEditForm.resx">
       <DependentUpon>DetailEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CardEdit\SchoolYearSemeaterEditForm.resx">
+    <EmbeddedResource Include="CadreEdit\SchoolYearSemeaterEditForm.resx">
       <DependentUpon>SchoolYearSemeaterEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CadreMeritManage\CadreMeritManage.resx">
+      <DependentUpon>CadreMeritManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClassExtendControls\new\ClassSpeedInsertBySeanNo.resx">
       <DependentUpon>ClassSpeedInsertBySeanNo.cs</DependentUpon>

@@ -136,11 +136,11 @@ namespace Behavior.TheCadre
                 }
             };
 
+            
             K12.Presentation.NLDPanels.Class.SelectedSourceChanged += delegate
             {
                 rbItem3["班級幹部登錄"].Enable = (User.Acl["Behavior.TheCadre.Report00070.1"].Executable && (K12.Presentation.NLDPanels.Class.SelectedSource.Count == 1));
                 //rbItem3["班級幹部管理"].Enable = (User.Acl["Behavior.TheCadre.Report00070"].Executable && (K12.Presentation.NLDPanels.Class.SelectedSource.Count == 1));
-
                 rbItem7["報表"]["學務相關報表"]["班級幹部總表"].Enable = (User.Acl["K12.class.TheCadre.Report00060.5"].Executable && (K12.Presentation.NLDPanels.Class.SelectedSource.Count >= 1));
             };
 
@@ -193,6 +193,15 @@ namespace Behavior.TheCadre
                 (new CardEdit.CadreEditForm()).ShowDialog();
             };
 
+            RibbonSpeedInsert["幹部敘獎作業"].Enable = User.Acl["54EC9142-D9DF-4391-8DD7-57D3F0177745"].Executable;
+            RibbonSpeedInsert["幹部敘獎作業"].Size = RibbonBarButton.MenuButtonSize.Medium;
+            RibbonSpeedInsert["幹部敘獎作業"].Image = Properties.Resources.stamp_paper_fav_128;
+            RibbonSpeedInsert["幹部敘獎作業"].Click += delegate
+            {
+                 (new CadreMeritManage.CadreMeritManage()).ShowDialog();
+                
+            };
+
             #region 權限控管
             //Framework.Security.Catalog ribbon = Framework.Security.RoleAclSource.Instance["學務作業"];
             //ribbon.Add(new Framework.Security.RibbonFeature("Behavior.TheCadre.Ribbon00010", "幹部名稱設定"));
@@ -219,6 +228,7 @@ namespace Behavior.TheCadre
             detail2.Add(new Framework.Security.RibbonFeature("K12.class.TheCadre.Report00060.5", "班級幹部總表"));
 
             detail2 = Framework.Security.RoleAclSource.Instance["學務作業"];
+            detail2.Add(new Framework.Security.ReportFeature("54EC9142-D9DF-4391-8DD7-57D3F0177745", "幹部敘獎作業"));
             detail2.Add(new Framework.Security.RibbonFeature("Behavior.TheCadre.Report00070.5", "幹部名稱管理"));
             detail2.Add(new Framework.Security.RibbonFeature("Behavior.TheCadre.Report00080", "學校幹部登錄"));
             detail2.Add(new Framework.Security.RibbonFeature("K12.class.TheCadre.Report00060.8", "學校幹部總表"));
