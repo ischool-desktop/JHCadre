@@ -31,6 +31,15 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.semesterCbx = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.schoolYearCbx = new DevComponents.DotNetBar.Controls.ComboBoxEx();
@@ -41,7 +50,6 @@
             this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.textBoxX3 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.comboBoxEx4 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
@@ -67,15 +75,7 @@
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.labelX11 = new DevComponents.DotNetBar.LabelX();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.reasonTbx = new DevComponents.DotNetBar.Controls.TextBoxX();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.groupPanel1.SuspendLayout();
             this.groupPanel3.SuspendLayout();
@@ -119,8 +119,69 @@
             this.dataGridViewX1.Size = new System.Drawing.Size(779, 404);
             this.dataGridViewX1.TabIndex = 0;
             // 
+            // Column5
+            // 
+            this.Column5.Frozen = true;
+            this.Column5.HeaderText = "班級";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 70;
+            // 
+            // Column6
+            // 
+            this.Column6.Frozen = true;
+            this.Column6.HeaderText = "座號";
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 57;
+            // 
+            // Column7
+            // 
+            this.Column7.Frozen = true;
+            this.Column7.HeaderText = "姓名";
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 70;
+            // 
+            // Column1
+            // 
+            this.Column1.Frozen = true;
+            this.Column1.HeaderText = "幹部類別";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 85;
+            // 
+            // Column4
+            // 
+            this.Column4.Frozen = true;
+            this.Column4.HeaderText = "幹部名稱";
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 85;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "大功";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 57;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "小功";
+            this.Column9.Name = "Column9";
+            this.Column9.Width = 57;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "嘉獎";
+            this.Column10.Name = "Column10";
+            this.Column10.Width = 57;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "事由";
+            this.Column11.Name = "Column11";
+            this.Column11.Width = 450;
+            // 
             // groupPanel1
             // 
+            this.groupPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel1.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -285,22 +346,6 @@
             this.textBoxX3.TabIndex = 7;
             this.textBoxX3.TextChanged += new System.EventHandler(this.textBoxX3_TextChanged);
             // 
-            // comboBoxEx4
-            // 
-            this.comboBoxEx4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxEx4.DisplayMember = "Text";
-            this.comboBoxEx4.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx4.FormattingEnabled = true;
-            this.comboBoxEx4.ItemHeight = 19;
-            this.comboBoxEx4.Location = new System.Drawing.Point(590, 127);
-            this.comboBoxEx4.Name = "comboBoxEx4";
-            this.comboBoxEx4.Size = new System.Drawing.Size(189, 25);
-            this.comboBoxEx4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.comboBoxEx4.TabIndex = 8;
-            this.comboBoxEx4.Visible = false;
-            this.comboBoxEx4.SelectedIndexChanged += new System.EventHandler(this.comboBoxEx4_SelectedIndexChanged);
-            // 
             // labelX5
             // 
             this.labelX5.BackColor = System.Drawing.Color.Transparent;
@@ -369,8 +414,7 @@
             this.labelX9.Name = "labelX9";
             this.labelX9.Size = new System.Drawing.Size(79, 23);
             this.labelX9.TabIndex = 13;
-            this.labelX9.Text = "事由代碼";
-            this.labelX9.Visible = false;
+            this.labelX9.Text = "事由";
             // 
             // cadreTypeCbx
             // 
@@ -402,6 +446,8 @@
             // 
             // groupPanel3
             // 
+            this.groupPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel3.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -606,6 +652,7 @@
             // 
             // labelX11
             // 
+            this.labelX11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelX11.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
@@ -618,70 +665,28 @@
             this.labelX11.TabIndex = 15;
             this.labelX11.Text = "事由內容：［幹部］擔任幹部類別：幹部名稱\r\n為判斷已有敘獎記錄的條件，可在之後加上說明文字。\r\n";
             // 
-            // Column5
+            // reasonTbx
             // 
-            this.Column5.Frozen = true;
-            this.Column5.HeaderText = "班級";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 70;
+            this.reasonTbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             // 
-            // Column6
             // 
-            this.Column6.Frozen = true;
-            this.Column6.HeaderText = "座號";
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 57;
             // 
-            // Column7
-            // 
-            this.Column7.Frozen = true;
-            this.Column7.HeaderText = "姓名";
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 70;
-            // 
-            // Column1
-            // 
-            this.Column1.Frozen = true;
-            this.Column1.HeaderText = "幹部類別";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 85;
-            // 
-            // Column4
-            // 
-            this.Column4.Frozen = true;
-            this.Column4.HeaderText = "幹部名稱";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 85;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "大功";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 57;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "小功";
-            this.Column9.Name = "Column9";
-            this.Column9.Width = 57;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "嘉獎";
-            this.Column10.Name = "Column10";
-            this.Column10.Width = 57;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "事由";
-            this.Column11.Name = "Column11";
-            this.Column11.Width = 450;
+            this.reasonTbx.Border.Class = "TextBoxBorder";
+            this.reasonTbx.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.reasonTbx.Location = new System.Drawing.Point(590, 127);
+            this.reasonTbx.Name = "reasonTbx";
+            this.reasonTbx.Size = new System.Drawing.Size(200, 25);
+            this.reasonTbx.TabIndex = 16;
+            this.reasonTbx.Text = "表現優異";
+            this.reasonTbx.TextChanged += new System.EventHandler(this.reasonTbx_TextChanged);
             // 
             // CadreMeritManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 613);
+            this.Controls.Add(this.reasonTbx);
             this.Controls.Add(this.labelX11);
             this.Controls.Add(this.dateTimeInput1);
             this.Controls.Add(this.groupPanel3);
@@ -690,7 +695,6 @@
             this.Controls.Add(this.labelX8);
             this.Controls.Add(this.labelX7);
             this.Controls.Add(this.labelX6);
-            this.Controls.Add(this.comboBoxEx4);
             this.Controls.Add(this.textBoxX3);
             this.Controls.Add(this.textBoxX2);
             this.Controls.Add(this.textBoxX1);
@@ -700,6 +704,8 @@
             this.Controls.Add(this.dataGridViewX1);
             this.Controls.Add(this.labelX5);
             this.DoubleBuffered = true;
+            this.MaximizeBox = true;
+            this.MinimizeBox = true;
             this.Name = "CadreMeritManage";
             this.Text = "幹部敘獎作業";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
@@ -726,7 +732,6 @@
         private DevComponents.DotNetBar.Controls.TextBoxX textBoxX1;
         private DevComponents.DotNetBar.Controls.TextBoxX textBoxX2;
         private DevComponents.DotNetBar.Controls.TextBoxX textBoxX3;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx comboBoxEx4;
         private DevComponents.DotNetBar.LabelX labelX5;
         private DevComponents.DotNetBar.LabelX labelX6;
         private DevComponents.DotNetBar.LabelX labelX7;
@@ -761,5 +766,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private DevComponents.DotNetBar.Controls.TextBoxX reasonTbx;
     }
 }

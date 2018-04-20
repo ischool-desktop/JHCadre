@@ -62,35 +62,6 @@ WHERE
 
             dateTimeInput1.Value = DateTime.Now;
 
-            #region Init事由代碼
-            KeyValuePair<string, string> fkvp = new KeyValuePair<string, string>("", "");
-            comboBoxEx4.Items.Add(fkvp);
-
-            #region 獎勵
-            DSResponse dsrsp = Config.GetDisciplineReasonList();
-            foreach (XmlElement element in dsrsp.GetContent().GetElements("Reason"))
-            {
-                if (element.GetAttribute("Type") == "獎勵")
-                {
-                    string key = element.GetAttribute("Code") + "-" + element.GetAttribute("Description");
-                    string value = element.GetAttribute("Description");
-                    KeyValuePair<string, string> kvp = new KeyValuePair<string, string>(key, value);
-                    if (!ReasonDic.ContainsKey(element.GetAttribute("Code")))
-                    {
-                        ReasonDic.Add(element.GetAttribute("Code"), value);
-                    }
-                    //KeyValuePair<string, string> kvp = new KeyValuePair<string, string>(k, v);
-                    comboBoxEx4.Items.Add(kvp);
-                }
-            }
-            #endregion
-
-            comboBoxEx4.DisplayMember = "Key";
-            comboBoxEx4.ValueMember = "Value";
-            comboBoxEx4.SelectedIndex = 0;
-            #endregion
-
-
             ReloadDataGridView();
 
             initFinish = true;
@@ -145,7 +116,7 @@ WHERE
                 dgvrow.Cells[index++].Value = "" + row["name"];
                 dgvrow.Cells[index++].Value = "" + row["referencetype"];
                 dgvrow.Cells[index++].Value = "" + row["cadrename"];
-                dgvrow.Cells[8].Value = string.Format("[幹部]擔任{0}:{1}", row["referencetype"], row["cadrename"]);
+                dgvrow.Cells[8].Value = string.Format("[幹部][{0}][{1}]{2}", row["referencetype"], row["cadrename"],reasonTbx.Text);
 
                 dgvrow.Tag = "" + row["id"]; // StudentID
 
@@ -183,7 +154,7 @@ WHERE
                             dgvrow.Cells[7].Value = merit.MeritC;
                             dgvrow.Cells[8].Value = merit.Reason;
                             dgvrow.ReadOnly = true;
-                            dgvrow.DefaultCellStyle.BackColor = Color.Yellow;
+                            dgvrow.DefaultCellStyle.BackColor = Color.LightGray;
                         }
                     }
                 }
@@ -313,6 +284,25 @@ WHERE
                 errorProvider3.SetError(textBoxX3, "輸入內容非數字!!");
             }
         }
+        // 事由
+        private void reasonTbx_TextChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridViewX1.Rows)
+            {
+                if (!row.ReadOnly)
+                {
+                    string reason = "" + row.Cells[8].Value;
+
+                    int index = reason.LastIndexOf("]") + 1;
+                    int length = reason.Length;
+                    int removeCcount = length - index;
+                    //reason += reasonTbx.Text;
+
+                    row.Cells[8].Value = reason.Remove(index, removeCcount);
+                    row.Cells[8].Value += reasonTbx.Text;
+                }
+            }
+        }
 
         private bool intParse(string CellValue)
         {
@@ -324,15 +314,6 @@ WHERE
             else
             {
                 return false;
-            }
-        }
-
-        private void comboBoxEx4_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            KeyValuePair<string, string> kvp = (KeyValuePair<string, string>)comboBoxEx4.SelectedItem;
-            foreach (DataGridViewRow row in dataGridViewX1.Rows)
-            {
-                row.Cells[8].Value = kvp.Value;
             }
         }
 
@@ -363,7 +344,7 @@ WHERE
                         string studentID = "" + dgvrow.Tag;
                         string reason = "" + dgvrow.Cells[8].Value;
                         string detail = string.Format("<Discipline><Merit A = \"{0}\" B = \"{1}\" C = \"{2}\"/></Discipline>",a, b,c);
-                        //string detail = "<Discipline><Merit A = " +"""a""" 
+                        
                         string data = string.Format(@"
 SELECT
     {0}::INT AS school_year
@@ -423,5 +404,6 @@ FROM
             }
             
         }
+
     }
 }
