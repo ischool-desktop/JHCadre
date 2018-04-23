@@ -145,7 +145,7 @@ WHERE
                         if (merit.RefStudentID == "" + dgvrow.Tag)
                         {
                             string reason = merit.Reason;
-                            hadMeritRecord = reason.Contains("" + dgvrow.Cells[8].Value);
+                            hadMeritRecord = reason.Contains(string.Format("[幹部][{0}][{1}]",dgvrow.Cells[3].Value,dgvrow.Cells[4].Value));
                         }
                         if (hadMeritRecord) // 已有敘獎記錄
                         {
