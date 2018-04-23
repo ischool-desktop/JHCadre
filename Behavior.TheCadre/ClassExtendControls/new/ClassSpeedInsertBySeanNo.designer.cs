@@ -46,10 +46,10 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCadreName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSeatNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSchoolYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSemester)).BeginInit();
@@ -81,7 +81,7 @@
             this.dataGridViewX1.Location = new System.Drawing.Point(10, 41);
             this.dataGridViewX1.Name = "dataGridViewX1";
             this.dataGridViewX1.RowTemplate.Height = 24;
-            this.dataGridViewX1.Size = new System.Drawing.Size(320, 398);
+            this.dataGridViewX1.Size = new System.Drawing.Size(320, 422);
             this.dataGridViewX1.TabIndex = 0;
             this.dataGridViewX1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX1_CellEndEdit);
             // 
@@ -144,6 +144,7 @@
             this.checkBoxX1.TabIndex = 7;
             this.checkBoxX1.Text = "儲存完成後進行敘獎作業";
             this.checkBoxX1.TextColor = System.Drawing.Color.Red;
+            this.checkBoxX1.Visible = false;
             // 
             // linkLabel1
             // 
@@ -251,12 +252,6 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.Width = 80;
             // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "參與比序";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 85;
-            // 
             // colCadreName
             // 
             this.colCadreName.DataPropertyName = "_CadreName";
@@ -282,6 +277,12 @@
             this.colSeatNo.HeaderText = "座號";
             this.colSeatNo.Name = "colSeatNo";
             this.colSeatNo.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "參與比序";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 85;
             // 
             // ClassSpeedInsertBySeanNo
             // 

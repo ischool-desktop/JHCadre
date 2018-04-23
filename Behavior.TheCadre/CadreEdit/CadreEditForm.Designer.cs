@@ -407,6 +407,8 @@
             // 
             // groupPanel3
             // 
+            this.groupPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel3.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -637,6 +639,8 @@
             // searchBtn
             // 
             this.searchBtn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBtn.BackColor = System.Drawing.Color.Transparent;
             this.searchBtn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.searchBtn.Location = new System.Drawing.Point(512, 136);
@@ -807,6 +811,9 @@
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
             this.DoubleBuffered = true;
+            this.MaximizeBox = true;
+            this.MinimizeBox = true;
+            this.MinimumSize = new System.Drawing.Size(778, 575);
             this.Name = "CadreEditForm";
             this.Text = "幹部批次修改";
             this.groupPanel1.ResumeLayout(false);
